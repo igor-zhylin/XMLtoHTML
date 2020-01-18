@@ -8,4 +8,7 @@
   <ItemGroup>
     <PackageReference Include="InfluxDB.Net-Main" Version="1.0.47" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="_InfluxDb\" />
+  </ItemGroup>
 </Project>
