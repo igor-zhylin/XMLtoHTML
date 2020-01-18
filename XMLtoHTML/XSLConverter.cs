@@ -8,22 +8,31 @@
     {
         private string _XMLPath;
         private string _XML;
+
+        private string _TemplatePath;
         private string _Template;
 
-        public XSLConverter(string xmlPath, string template)
+
+        public XSLConverter(string xmlPath, string templatePath)
         {
             this._XMLPath = xmlPath;
-            this._Template = template;
+            this._TemplatePath = templatePath;
 
-            _XML = !string.IsNullOrEmpty(_XMLPath) ? ReadAllXML() : throw new System.Exception("EMPTY XML FILEPATH!");
+            _XML = (!string.IsNullOrEmpty(_XMLPath))
+                    ? ReadAll(_XMLPath)
+                    : throw new System.Exception("EMPTY XML FILEPATH!");
+
+            _Template = (!string.IsNullOrEmpty(_TemplatePath))
+                    ? ReadAll(_TemplatePath)
+                    : throw new System.Exception("EMPTY TEMPLATE FILEPATH!");
         }
 
         /// <summary>
         /// Read Input file from path 
         /// </summary>
         /// <returns>Returns HTML page</returns>
-        private string ReadAllXML()
-            => File.ReadAllText(_XMLPath);
+        private string ReadAll(string path)
+            => File.ReadAllText(path);
 
         /// <summary>
         /// Transform file from params from class constructor
