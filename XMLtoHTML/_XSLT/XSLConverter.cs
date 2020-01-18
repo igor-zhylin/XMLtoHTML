@@ -12,6 +12,7 @@
         private string _TemplatePath;
         private string _Template;
 
+        private string _HTML;
 
         public XSLConverter(string xmlPath, string templatePath)
         {
@@ -50,9 +51,17 @@
             {
                 transform.Transform(reader, null, results);
             }
-            return results.ToString();
+            _HTML = results.ToString();
+            return _HTML;
         }
 
+        public void SaveToFile(string path)
+        {
+            if (!path.EndsWith(@"\"))
+                path += @"\";
+            path += "report.html";
+            File.WriteAllText(path, _HTML);
+        }
 
         /// <summary>
         /// Static Transormer for xml 

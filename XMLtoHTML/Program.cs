@@ -9,12 +9,13 @@
         {
             try
             {
-                string template = File.ReadAllText(@"Template.xslt");
+                string template = " ";
 
                 string InputXMLFile = " ";
-                string HTMLpath = " ";
-                string OutputHTML = XSLConverter.TransformXMLToHTML(InputXMLFile, template);
+                string HTMLpath = @".\";
 
+                var converter = new XSLConverter(InputXMLFile, template);
+                string OutputHTML = converter.TransformXMLToHTML();
             }
             catch (Exception ex)
             {
