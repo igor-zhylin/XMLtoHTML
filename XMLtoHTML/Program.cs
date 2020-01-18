@@ -1,12 +1,13 @@
-﻿using System;
-
-namespace XMLtoHTML
+﻿namespace XMLtoHTML
 {
+    using System;
+
     class Program
     {
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
         }
+
     }
 }
