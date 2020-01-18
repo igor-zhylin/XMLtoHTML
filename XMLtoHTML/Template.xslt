@@ -86,6 +86,7 @@
               border-collapse: collapse;
               background: #252F48;
               margin: 10px;
+              width: 100%; 
           }
           .table_dark th {
               color: #EDB749;
