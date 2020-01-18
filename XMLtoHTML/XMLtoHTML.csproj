@@ -5,4 +5,7 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="InfluxDB.Net-Main" Version="1.0.47" />
+  </ItemGroup>
 </Project>
