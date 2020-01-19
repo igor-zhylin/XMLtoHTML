@@ -38,7 +38,7 @@
         /// <summary>
         /// Transform file from params from class constructor
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns HTML page</returns>
         public string TransformXMLToHTML()
         {
             XslCompiledTransform transform = new XslCompiledTransform();
@@ -55,6 +55,11 @@
             return _HTML;
         }
 
+        /// <summary>
+        /// Write all converted text to file 
+        /// </summary>
+        /// <param name="path">Path to file</param>
+        /// <param name="filename">File name with extension</param>
         public void SaveToFile(string path, string filename)
         {
             File.WriteAllText(@$"{path}\{filename}", _HTML);
