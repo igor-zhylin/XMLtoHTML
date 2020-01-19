@@ -55,12 +55,9 @@
             return _HTML;
         }
 
-        public void SaveToFile(string path)
+        public void SaveToFile(string path, string filename)
         {
-            if (!path.EndsWith(@"\"))
-                path += @"\";
-            path += "report.html";
-            File.WriteAllText(path, _HTML);
+            File.WriteAllText(@$"{path}\{filename}", _HTML);
         }
 
         /// <summary>
