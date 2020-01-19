@@ -10,5 +10,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="_InfluxDb\" />
+    <Folder Include="_XSLT\" />
   </ItemGroup>
 </Project>

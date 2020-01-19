@@ -12,6 +12,7 @@
         private string _TemplatePath;
         private string _Template;
 
+        private string _HTML;
 
         public XSLConverter(string xmlPath, string templatePath)
         {
@@ -37,7 +38,7 @@
         /// <summary>
         /// Transform file from params from class constructor
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns HTML page</returns>
         public string TransformXMLToHTML()
         {
             XslCompiledTransform transform = new XslCompiledTransform();
@@ -50,9 +51,19 @@
             {
                 transform.Transform(reader, null, results);
             }
-            return results.ToString();
+            _HTML = results.ToString();
+            return _HTML;
         }
 
+        /// <summary>
+        /// Write all converted text to file 
+        /// </summary>
+        /// <param name="path">Path to file</param>
+        /// <param name="filename">File name with extension</param>
+        public void SaveToFile(string path, string filename)
+        {
+            File.WriteAllText(@$"{path}\{filename}", _HTML);
+        }
 
         /// <summary>
         /// Static Transormer for xml 
