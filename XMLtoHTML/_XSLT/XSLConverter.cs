@@ -14,6 +14,11 @@
 
         private string _HTML;
 
+        /// <summary>
+        /// Read input xml and template(do enable to convert to html)
+        /// </summary>
+        /// <param name="xmlPath">Path to xml file(without file validation)</param>
+        /// <param name="templatePath">Path to XSLT template file</param>
         public XSLConverter(string xmlPath, string templatePath)
         {
             this._XMLPath = xmlPath;
@@ -36,10 +41,9 @@
             => File.ReadAllText(path);
 
         /// <summary>
-        /// Transform file from params from class constructor
+        /// Transform file from params from class constructor(for saving to file use save method)
         /// </summary>
-        /// <returns>Returns HTML page</returns>
-        public string TransformXMLToHTML()
+        public void TransformXMLToHTML()
         {
             XslCompiledTransform transform = new XslCompiledTransform();
             using (XmlReader reader = XmlReader.Create(new StringReader(_Template)))
@@ -52,7 +56,6 @@
                 transform.Transform(reader, null, results);
             }
             _HTML = results.ToString();
-            return _HTML;
         }
 
         /// <summary>
