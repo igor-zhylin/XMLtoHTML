@@ -19,11 +19,13 @@
                 }
                 else
                 {
+                    worker.LoadTestResultsFromHeader();
                     var converter = new XSLConverter(InputXMLFile, template);
                     converter.RunTransformation();
                     converter.SaveToFile(@".\", "report.html");
                 }
-                
+
+                return worker.GetFailedTestsCount();
             }
             catch (Exception ex)
             {

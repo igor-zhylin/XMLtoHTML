@@ -9,7 +9,7 @@
     /// </summary>
     public class XMLWorker
     {
-        private string _Path;
+        private readonly string _Path;
 
         private int _TotalCaseCount;
         private int _Passes;
@@ -72,13 +72,40 @@
             XmlDocument doc = new XmlDocument();
             doc.Load(this._Path);
 
-            XmlNode node = doc.DocumentElement.SelectSingleNode("test-run");
-            _TotalCaseCount = Convert.ToInt32(node.Attributes["testcasecount"]?.Value);
-            _Passes = Convert.ToInt32(node.Attributes["passed"]?.Value);
-            _Failures = Convert.ToInt32(node.Attributes["failed"]?.Value);
-            _Skips = Convert.ToInt32(node.Attributes["skipped"]?.Value);
+            XmlNode node = doc.DocumentElement.SelectSingleNode("/test-run");
 
+            if (node is null)
+            {
+                Console.WriteLine("ERROR READING HEADER");
+                _TotalCaseCount = -1;
+                _Passes = -1;
+                _Failures = -1;
+                _Skips = -1;
+            }
+            else
+            {
+                _TotalCaseCount = Convert.ToInt32(node.Attributes["testcasecount"]?.Value);
+                _Passes = Convert.ToInt32(node.Attributes["passed"]?.Value);
+                _Failures = Convert.ToInt32(node.Attributes["failed"]?.Value);
+                _Skips = Convert.ToInt32(node.Attributes["skipped"]?.Value);
+            }
         }
+
+
+#region Get Header Numbers
+
+        public int GetTotalCaseCount()
+            => _TotalCaseCount;
+
+        public int GetFailedTestsCount()
+            => _Failures;
+
+        public int GetPassedTestsCount()
+            => _Passes;
+
+        public int GetSkippedTestsCount()
+            => _Skips;
+#endregion
 
     }
 }
