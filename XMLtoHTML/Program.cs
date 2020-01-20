@@ -15,7 +15,7 @@
                 string HTMLpath = @".\";
 
                 var converter = new XSLConverter(InputXMLFile, template);
-                string OutputHTML = converter.TransformXMLToHTML();
+                converter.RunTransformation();
             }
             catch (Exception ex)
             {

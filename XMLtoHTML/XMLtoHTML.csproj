@@ -11,5 +11,6 @@
   <ItemGroup>
     <Folder Include="_InfluxDb\" />
     <Folder Include="_XSLT\" />
+    <Folder Include="_XML\" />
   </ItemGroup>
 </Project>
