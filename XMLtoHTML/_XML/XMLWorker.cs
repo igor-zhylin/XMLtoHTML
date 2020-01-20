@@ -11,6 +11,12 @@
     {
         private string _Path;
 
+        private int _TotalCaseCount;
+        private int _Passes;
+        private int _Failures;
+        private int _Skips;
+
+        private bool IsFileValid;
         /// <summary>
         /// Init
         /// </summary>
@@ -31,22 +37,48 @@
         {
             try
             {
-                var settings = new XmlReaderSettings {
-                DtdProcessing = DtdProcessing.Ignore,
-                XmlResolver = null
-            };
+                var settings = new XmlReaderSettings
+                {
+                    DtdProcessing = DtdProcessing.Ignore,
+                    XmlResolver = null
+                };
 
                 using var reader = XmlReader.Create(new StreamReader(_Path), settings);
 
                 var document = new XmlDocument();
                 document.Load(reader);
 
-                return true;
+                IsFileValid = true;
             }
             catch
             {
-                return false;
+                IsFileValid = false;
+                return IsFileValid;
             }
+            return IsFileValid;
         }
+
+        /// <summary>
+        /// Read header results from XML if its valid 
+        /// </summary>
+        public void LoadTestResultsFromHeader()
+        {
+            if (IsFileValid)
+                LoadHeaderResults();
+        }
+
+        private void LoadHeaderResults()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(this._Path);
+
+            XmlNode node = doc.DocumentElement.SelectSingleNode("test-run");
+            _TotalCaseCount = Convert.ToInt32(node.Attributes["testcasecount"]?.Value);
+            _Passes = Convert.ToInt32(node.Attributes["passed"]?.Value);
+            _Failures = Convert.ToInt32(node.Attributes["failed"]?.Value);
+            _Skips = Convert.ToInt32(node.Attributes["skipped"]?.Value);
+
+        }
+
     }
 }

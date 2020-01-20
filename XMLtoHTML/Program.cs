@@ -27,6 +27,7 @@
             }
             catch (Exception ex)
             {
+                Console.WriteLine("ERROR REPORT GENERATION! (XMLtoHTML.exe)");
                 Console.WriteLine(ex.StackTrace.ToString());
                 return -1;
             }

@@ -77,6 +77,7 @@
             if(!string.IsNullOrEmpty(path))
             if(!Directory.Exists(path))
                 Directory.CreateDirectory(path);
+
             File.WriteAllText(@$"{path}/{filename}", _HTML);
         }
 
