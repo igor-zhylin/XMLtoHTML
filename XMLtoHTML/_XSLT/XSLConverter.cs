@@ -74,10 +74,9 @@
         /// <param name="filename">File name with extension</param>
         public void SaveToFile(string path, string filename)
         {
-            if (!Directory.Exists(path))
-            {
+            if(!string.IsNullOrEmpty(path))
+            if(!Directory.Exists(path))
                 Directory.CreateDirectory(path);
-            }
             File.WriteAllText(@$"{path}/{filename}", _HTML);
         }
 

@@ -1,7 +1,7 @@
 ﻿namespace XMLtoHTML
 {
     using System;
-    using System.IO;
+    using XMLtoHTML._XML;
 
     class Program
     {
@@ -12,10 +12,18 @@
                 string template = @"Template.xslt";
 
                 string InputXMLFile = "report.xml";
+                XMLWorker worker = new XMLWorker(InputXMLFile);
+                if (!worker.ValidateFile())
+                {
+                    Console.WriteLine($"Input xml file has an invalid format!!! \n {InputXMLFile}");
+                }
+                else
+                {
+                    var converter = new XSLConverter(InputXMLFile, template);
+                    converter.RunTransformation();
+                    converter.SaveToFile(@".\", "report.html");
+                }
                 
-                var converter = new XSLConverter(InputXMLFile, template);
-                converter.RunTransformation();
-                converter.SaveToFile(@".\", "report.html");
             }
             catch (Exception ex)
             {
