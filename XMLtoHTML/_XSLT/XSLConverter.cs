@@ -48,6 +48,7 @@
         {
             _HTML = TransformXMLToHTML();
         }
+
         /// <summary>
         /// Transform file from params from class constructor(for saving to file use save method)
         /// </summary>
@@ -73,11 +74,11 @@
         /// <param name="filename">File name with extension</param>
         public void SaveToFile(string path, string filename)
         {
-            if (!Directory.Exists(path))
-            {
+            if(!string.IsNullOrEmpty(path))
+            if(!Directory.Exists(path))
                 Directory.CreateDirectory(path);
-            }
-            File.WriteAllText(@$"{path}\{filename}", _HTML);
+
+            File.WriteAllText(@$"{path}/{filename}", _HTML);
         }
 
         /// <summary>
