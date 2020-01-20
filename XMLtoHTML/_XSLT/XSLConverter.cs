@@ -40,10 +40,18 @@
         private string ReadAll(string path)
             => File.ReadAllText(path);
 
+
+        /// <summary>
+        /// Runs Tranformation from XML to HTML 
+        /// </summary>
+        public void RunTransformation()
+        {
+            _HTML = TransformXMLToHTML();
+        }
         /// <summary>
         /// Transform file from params from class constructor(for saving to file use save method)
         /// </summary>
-        public void TransformXMLToHTML()
+        private string TransformXMLToHTML()
         {
             XslCompiledTransform transform = new XslCompiledTransform();
             using (XmlReader reader = XmlReader.Create(new StringReader(_Template)))
@@ -55,7 +63,7 @@
             {
                 transform.Transform(reader, null, results);
             }
-            _HTML = results.ToString();
+            return results.ToString();
         }
 
         /// <summary>
@@ -65,6 +73,10 @@
         /// <param name="filename">File name with extension</param>
         public void SaveToFile(string path, string filename)
         {
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
             File.WriteAllText(@$"{path}\{filename}", _HTML);
         }
 
