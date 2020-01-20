@@ -11,7 +11,9 @@
             {
                 string template = @"Template.xslt";
 
-                string InputXMLFile = "report.xml";
+                string InputXMLFile = args[0];
+                string SaveTo = args[1];
+
                 XMLWorker worker = new XMLWorker(InputXMLFile);
                 if (!worker.ValidateFile())
                 {
@@ -22,7 +24,7 @@
                     worker.LoadTestResultsFromHeader();
                     var converter = new XSLConverter(InputXMLFile, template);
                     converter.RunTransformation();
-                    converter.SaveToFile(@".\", "report.html");
+                    converter.SaveToFile(SaveTo, "report.html");
                 }
 
                 return worker.GetFailedTestsCount();
