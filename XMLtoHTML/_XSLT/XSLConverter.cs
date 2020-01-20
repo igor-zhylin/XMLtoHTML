@@ -78,7 +78,7 @@
             {
                 Directory.CreateDirectory(path);
             }
-            File.WriteAllText(@$"{path}\{filename}", _HTML);
+            File.WriteAllText(@$"{path}/{filename}", _HTML);
         }
 
         /// <summary>
