@@ -48,6 +48,7 @@
         {
             _HTML = TransformXMLToHTML();
         }
+
         /// <summary>
         /// Transform file from params from class constructor(for saving to file use save method)
         /// </summary>

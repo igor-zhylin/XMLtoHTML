@@ -2,6 +2,9 @@
 {
     using System;
 
+    /// <summary>
+    /// Gets report summary 
+    /// </summary>
     public class XMLWorker
     {
         private string _Path;
