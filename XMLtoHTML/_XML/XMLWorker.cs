@@ -40,8 +40,11 @@
                 var settings = new XmlReaderSettings
                 {
                     DtdProcessing = DtdProcessing.Ignore,
-                    XmlResolver = null
+                    XmlResolver = null,
+                    ValidationType = ValidationType.Schema
                 };
+
+                settings.Schemas.Add(null, "report-schema.xsd");
 
                 using var reader = XmlReader.Create(new StreamReader(_Path), settings);
 

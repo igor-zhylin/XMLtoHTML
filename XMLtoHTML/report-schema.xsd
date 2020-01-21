@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wmh="http://www.wmhelp.com/2003/eGenerator" elementFormDefault="qualified">
+  <xs:element name="test-run">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="case-folder" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="testcasecount" type="xs:string"/>
+      <xs:attribute name="passed" type="xs:string"/>
+      <xs:attribute name="failed" type="xs:string"/>
+      <xs:attribute name="skipped" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="case-folder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="test-case" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="required"/>
+      <xs:attribute name="passes" type="xs:string" use="required"/>
+      <xs:attribute name="failures" type="xs:string" use="required"/>
+      <xs:attribute name="skips" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="test-case">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="properties"/>
+        <xs:element ref="output"/>
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="required"/>
+      <xs:attribute name="result" type="xs:string" use="required"/>
+      <xs:attribute name="time" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="properties">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="property"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="property">
+    <xs:complexType>
+      <xs:attribute name="name" type="xs:string"/>
+      <xs:attribute name="value" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="output" type="xs:string"/>
+</xs:schema>
