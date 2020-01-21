@@ -82,6 +82,15 @@
         }
 
         /// <summary>
+        /// Write all converted text to file 
+        /// </summary>
+        /// <param name="path">Path to file</param>
+        public void SaveToFile(string path)
+        {
+            File.WriteAllText($"{path}", _HTML);
+        }
+
+        /// <summary>
         /// Static Transormer for xml 
         /// </summary>
         /// <param name="inputXml">Input string XML</param>
