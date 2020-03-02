@@ -1,6 +1,7 @@
-﻿using System;
-namespace XMLtoHTML._InfluxDb.Models
+﻿namespace XMLtoHTML._InfluxDb.Models
 {
+    using System;
+
     public class EntityModel
     {
         public EntityModel()
