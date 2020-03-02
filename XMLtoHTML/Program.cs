@@ -18,7 +18,6 @@
                 string SaveTo = args[1];
 #endif
 
-
                 XMLWorker worker = new XMLWorker(InputXMLFile);
                 if (!worker.ValidateFile())
                 {

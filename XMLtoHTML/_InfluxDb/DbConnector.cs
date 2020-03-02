@@ -20,7 +20,7 @@ namespace XMLtoHTML._InfluxDb
         }
 
 
-    
+
 
     }
 }
